@@ -11,10 +11,12 @@ import fnmatch
 from music21 import *
 
 # Local Imports
-from cogharm.woolhouse09 import event_attraction
 from cogharm.parn88 import PitchSalience
 from cogharm.roughness import roughnessChord
+from cogharm.woolhouse09 import event_attraction
 from cogharm.diatonicity import diatonicity
+from cogharm.ca_kon import chroma_attraction
+from cogharm.ka_kon import key_attraction
 
 # Writing a class for corpus analysis
 class Analysis:
@@ -27,8 +29,8 @@ class Analysis:
         self.rhythm = [chord.duration.quarterLength/(self.raw.duration.quarterLength) for chord in (self.raw).chordify().recurse().getElementsByClass('Chord')]
         self.roughness = [roughnessChord(chord) for chord in self.chords]
         self.mean_roughness = sum(self.roughness)/len(self.roughness)
-        self.diatonicity = [diatonicity(chord) for chord in self.chords]
-        self.harmonicity = None
+        #self.diatonicity = [diatonicity(chord) for chord in self.chords]
+        #self.harmonicity = None
         pitch_salience = [PitchSalience(chord) for chord in self.chords]
         self.ra = [chord.ra for chord in pitch_salience]
         self.ps = [chord.ps for chord in pitch_salience]
@@ -42,8 +44,8 @@ class Analysis:
                 pre_chord = (self.chords[count])
                 succ_chord = (self.chords[count + 1])
                 self.ea.append(event_attraction(pre_chord, succ_chord))        
-        self.ca = None
-        self.ka = None
+        self.ca = [chroma_attraction(chord) for chord in self.chords]
+        self.ka = [key_attraction(chord) for chord in self.chords]
 
 def corpus_analysis(corpus_path):
     # Set directory to folder with corpus.

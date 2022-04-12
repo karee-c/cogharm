@@ -36,3 +36,5 @@ def diatonicity(chord,epsilon = 1):
         weighting2 = SCALES[key] / sum(weightssum)
         SCALES[key] = round(weighting2,3)
     return SCALES
+
+    # Add parncutt version
