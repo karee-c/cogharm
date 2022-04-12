@@ -43,7 +43,7 @@ class Analysis:
                 self.ea.append(event_attraction(pre_chord, succ_chord))        
         self.ca = None
         self.ka = None
-        
+
 def corpus_analysis(corpus_path):
     # Set directory to folder with corpus.
     # Extract file names.
@@ -66,4 +66,3 @@ def corpus_analysis(corpus_path):
 # Export to .csv
 # comparisons within corpus
 # graphs
-"""
