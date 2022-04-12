@@ -43,31 +43,24 @@ class Analysis:
                 self.ea.append(event_attraction(pre_chord, succ_chord))        
         self.ca = None
         self.ka = None
+        
+def corpus_analysis(corpus_path):
+    # Set directory to folder with corpus.
+    # Extract file names.
+    corpus_folder = os.listdir(corpus_path)
 
-"""
-def corpus_analysis(file_path):
+    # Filter out files with unuasble extensions.
+    corpus_filepaths = []
+    extensions =  ['*.krn','*.mid','*.mxl']
+    for extension in extensions:
+        for name in fnmatch.filter(corpus_folder,extension):
+            corpus_filepaths.append(corpus_path+'/'+name)
+
+    # Analyze corpus
+    corpus_analyzed={}
+    for file in corpus_filepaths:
+        corpus_analyzed.update({os.path.basename(file):Analysis(file)})
     return corpus_analyzed
-# Set directory to folder with corpus.
-# Extract file names.
-while True:
-    corpus_path = input('set directory with corpus: ',)
-    try:
-            corpus_folder = os.listdir(corpus_path)
-            break
-    except (FileNotFoundError):
-        print ('Invalid directory!')
-
-# Filter out files with unuasble extensions.
-corpus_filepaths = []
-extensions =  ['*.krn','*.mid','*.mxl']
-for extension in extensions:
-	for name in fnmatch.filter(corpus_folder,extension):
-		corpus_filepaths.append(corpus_path+'/'+name)
-
-# Analyze corpus
-corpus_analyzed={}
-for file in corpus_filepaths:
-    corpus_analyzed.update({os.path.basename(file):Analysis(file)})
 
 # TODO:
 # Export to .csv
