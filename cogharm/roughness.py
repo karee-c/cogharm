@@ -73,4 +73,4 @@ def roughnessChord(chord, rolloff = 1, partials = 11):
     dyads = [dyad for dyad in (combinations(chord,2))]
     dyads_roughness = [roughnessDyad(dyad) for dyad in dyads]
     roughness = 2/len(chord)*(sum(dyads_roughness))
-    return roughness
+    return round(roughness,3)

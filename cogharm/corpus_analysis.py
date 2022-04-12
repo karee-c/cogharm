@@ -19,6 +19,7 @@ from cogharm.diatonicity import diatonicity
 # Writing a class for corpus analysis
 class Analysis:
     def __init__(self, filepath):
+        """"""
         self.filepath = filepath
         self.filename = os.path.basename(self.filepath)
         self.raw = converter.parse(self.filepath)
@@ -26,7 +27,7 @@ class Analysis:
         self.rhythm = [chord.duration.quarterLength/(self.raw.duration.quarterLength) for chord in (self.raw).chordify().recurse().getElementsByClass('Chord')]
         self.roughness = [roughnessChord(chord) for chord in self.chords]
         self.mean_roughness = sum(self.roughness)/len(self.roughness)
-        """self.diatonicity = [diatonicity(chord) for chord in self.chords]"""
+        self.diatonicity = [diatonicity(chord) for chord in self.chords]
         self.harmonicity = None
         pitch_salience = [PitchSalience(chord) for chord in self.chords]
         self.ra = [chord.ra for chord in pitch_salience]

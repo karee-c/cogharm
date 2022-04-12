@@ -34,7 +34,7 @@ class PitchSalience:
             pc_index = [i%12 for i in range(pc, pc+11)]
             weight_sums.append(sum(list(pc_chord[ind] * weight for weight, ind in zip(self.weights,pc_index))))
         rasums = [pc/max(weight_sums) for pc in weight_sums]
-        self.ra = sum(rasums)**0.5
+        self.ra = (round,sum(rasums)**0.5,3)
         self.ps = [round(1/self.ra*pc,3) for pc in rasums]
         if len([index for index, value in enumerate(self.ps) if value == max(self.ps)]) > 1:
             self.root_pc = None
