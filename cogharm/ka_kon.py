@@ -23,5 +23,5 @@ def key_attraction(chord):
         ka_list = []
         for pc in SCALES[name]:
             ka_list.append(ca[pc])
-            ka[name] = round(sum(ka_list)/len(ka_list),3)
+            ka[name] = sum(ka_list)/len(ka_list)
     return ka

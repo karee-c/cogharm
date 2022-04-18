@@ -28,7 +28,7 @@ class Analysis:
         self.chords = [[pitch.midi for pitch in chord.pitches] for chord in (self.raw).chordify().recurse().getElementsByClass('Chord')]   
         self.rhythm = [chord.duration.quarterLength/(self.raw.duration.quarterLength) for chord in (self.raw).chordify().recurse().getElementsByClass('Chord')]
         self.roughness = [roughnessChord(chord) for chord in self.chords]
-        self.mean_roughness = sum(self.roughness)/len(self.roughness)
+        self.mean_roughness = round(sum(self.roughness)/len(self.roughness),3)
         self.diatonicity = [diatonicity(chord) for chord in self.chords]
         #self.harmonicity = None
         pitch_salience = [PitchSalience(chord) for chord in self.chords]
