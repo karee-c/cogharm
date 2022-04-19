@@ -47,7 +47,7 @@ class Analysis:
         self.ca = [chroma_attraction(chord) for chord in self.chords]
         self.ka = [key_attraction(chord) for chord in self.chords]
 
-def corpus_analysis(corpus_path):
+def corpus_analyze(corpus_path):
     # Set directory to folder with corpus.
     # Extract file names.
     corpus_folder = os.listdir(corpus_path)

@@ -5,3 +5,4 @@ from cogharm.woolhouse09 import *
 from cogharm.ca_kon import chroma_attraction
 from cogharm.ka_kon import key_attraction
 from cogharm.corpus_analysis import Analysis
+from cogharm.corpus_analysis import corpus_analyze
