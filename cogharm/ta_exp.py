@@ -1,6 +1,9 @@
-from cogharm.ca_kon import chroma_attraction
+# Local Imports
+from cogharm.woolhouse09 import event_attraction
 
-# Constants
+# Consants
+ALLPC = [[pc] for pc in range(0,12)]
+
 SCALES = {
     'ka0ma': [0,2,4,5,7,9,11],
     'ka1ma': [1,3,5,6,8,10,0],
@@ -14,6 +17,10 @@ SCALES = {
     'ka9ma': [9,11,1,2,4,6,8],
     'ka10ma': [10,0,2,3,5,7,9],
     'ka11ma': [11,1,3,4,6,8,10]}
+
+def chroma_attraction(chord, alpha = 9999999, beta = 4):
+        ca = [(round(event_attraction(chord, pc, alpha = alpha, beta = beta, Gamma = 1, delta = 0),3)) for pc in ALLPC]
+        return ca
 
 def key_attraction(chord):
     """"""
