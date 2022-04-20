@@ -50,21 +50,21 @@ the sort parameter sorts the possible bijective VLs by size; by default it is se
 def bijective_vl(firstPCs, secondPCs, sort = False):
 	if len(firstPCs) != len(secondPCs):
 		return False
-	bijective_vl.fullList = []										# collects all the bijective VLs along with their size
-	currentBest = []												# currentBest records the best VL we have found so far
-	currentBestSize = _VERYLARGENUMBER								# currentBestSize is the size of the current best VL (starts at infinity)
-	for i in range(0, len(firstPCs)):								# iterate through every inversion of the  second PC
+	bijective_vl.fullList = []										           # collects all the bijective VLs along with their size
+	currentBest = []												           # currentBest records the best VL we have found so far
+	currentBestSize = _VERYLARGENUMBER								           # currentBestSize is the size of the current best VL (starts at infinity)
+	for i in range(0, len(firstPCs)):								           # iterate through every inversion of the  second PC
 		secondPCs = secondPCs[-1:] + secondPCs[:-1]
 		newSize = 0	
 		newPaths = []
 		for i in range(0, len(firstPCs)):
-			path = (secondPCs[i] - firstPCs[i]) % _MODULUS			# calculate most efficient path based on the pairs
-			if path > _HALFMODULUS: 								# negative numbers for descending paths
+			path = (secondPCs[i] - firstPCs[i]) % _MODULUS			           # calculate most efficient path based on the pairs
+			if path > _HALFMODULUS: 								           # negative numbers for descending paths
 				path -= _MODULUS
 			newPaths.append([firstPCs[i], path])
 			newSize += abs(path)
 		bijective_vl.fullList.append([newPaths, newSize])		
-		if newSize < currentBestSize:								# record the current best size
+		if newSize < currentBestSize:								           # record the current best size
 			currentBestSize = newSize
 			currentBest = newPaths
 	bijective_vl.size = currentBestSize

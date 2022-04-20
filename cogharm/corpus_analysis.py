@@ -18,8 +18,8 @@ from cogharm.diatonicity import diatonicity
 from cogharm.ca_kon import chroma_attraction
 from cogharm.ka_kon import key_attraction
 
-# Writing a class for corpus analysis
-class Analysis:
+# Writing a class for corpus analysis.
+class CogharmAnalysis:
     def __init__(self, filepath):
         """"""
         self.filepath = filepath
@@ -62,7 +62,7 @@ def corpus_analyze(corpus_path):
     # Analyze corpus
     corpus_analyzed={}
     for file in corpus_filepaths:
-        corpus_analyzed.update({os.path.basename(file):Analysis(file)})
+        corpus_analyzed.update({os.path.basename(file):CogharmAnalysis(file)})
     return corpus_analyzed
 
 # TODO:

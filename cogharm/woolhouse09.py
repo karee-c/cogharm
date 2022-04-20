@@ -1,3 +1,5 @@
+"""
+"""
 # Standard Imports
 import numpy
 from math import *
@@ -14,9 +16,9 @@ CDDICT = {0:"C",1:"D",2:"D",3:"C",
 # Defining functions used in event attraction
 def cd_chord(chord):
     """ Calculate if chord contains consonant or dissonant intervals. 
+        chord = list of MIDI numbers representing a chord
         Returns "D" if chord contains any dissonant intervals.
         Returns "C" if chord only contains consonant intervals. 
-        Based on Woolhouse 2009, see CDDICT for list of dissonant intervals.
     """
     intervals = [abs((interval[0]%12)- (interval[1]%12)) for interval in list(combinations(chord,2))]
     cd_intervals = [CDDICT[interval] for interval in intervals]
@@ -25,9 +27,9 @@ def cd_chord(chord):
     else:
         return "C" 
 
-def pd(note1,note2):
-    """ Calculate semitone distance between two notes. """
-    return abs(note1 - note2)
+def pd(midi1,midi2):
+    """ Calculate semitone distance between two midi numbers. """
+    return abs(midi1 - midi2)
 
 def ic(pd):
     """ Calculate interval cycle of given interval. """
@@ -41,6 +43,7 @@ def event_attraction(pre_chord, suc_chord, alpha = 99999, beta = 4, Gamma = 8, d
         beta = Preceding chord Root Salience weighting variable.
         Gamma = Succeding chord Root Salience weighting variable.
         delta = Consonance/Dissonance weighting variable.
+        Returns blah blah blah. 
     """
     # Pitch Distance Matrix
     pdlist = [[pd(pre_note, suc_note) for suc_note in suc_chord] for pre_note in pre_chord]
@@ -60,7 +63,7 @@ def event_attraction(pre_chord, suc_chord, alpha = 99999, beta = 4, Gamma = 8, d
     rs1list= [[1 if vl > 0 else 0 for vl in row] for row in vllist]
     rs1 = numpy.array(rs1list).reshape(len(pre_chord),len(suc_chord))
     
-    # Calculate root of chords based on Parncutt 1988
+    # Calculate root of chords using Parncutt 1993
     prec_root = PitchSalience(pre_chord).root
     succ_root = PitchSalience(suc_chord).root
 

@@ -62,6 +62,7 @@ def roughnessDyad(dyad, rolloff = 1, partials = 11):
     # Calculate roughness for entire dyad.  
     numerator = 0.5*(numpy.sum(roughness_matrix * weightmatrix))
     denominator = sum([weight**2 for weight in list(weights.values())])
+    # TODO: I don't like this -kon
     roughness = numerator / denominator
     return roughness
 
@@ -74,3 +75,7 @@ def roughnessChord(chord, rolloff = 1, partials = 11):
     dyads_roughness = [roughnessDyad(dyad) for dyad in dyads]
     roughness = 2/len(chord)*(sum(dyads_roughness))
     return round(roughness,3)
+
+"""
+TODO: Make version that does all relationships. 
+"""

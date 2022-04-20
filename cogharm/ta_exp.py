@@ -19,8 +19,9 @@ SCALES = {
     'ka11ma': [11,1,3,4,6,8,10]}
 
 def chroma_attraction(chord, alpha = 9999999, beta = 4):
-        ca = [(round(event_attraction(chord, pc, alpha = alpha, beta = beta, Gamma = 1, delta = 0),3)) for pc in ALLPC]
-        return ca
+    """"""
+    ca = [(round(event_attraction(chord, pc, alpha = alpha, beta = beta, Gamma = 1, delta = 0),3)) for pc in ALLPC]
+    return ca
 
 def key_attraction(chord):
     """"""
